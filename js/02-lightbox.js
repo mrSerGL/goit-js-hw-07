@@ -29,12 +29,6 @@ function onGalleryContainerClick(event) {
   if (!isGallryItem) {
     return;
   }
-
-  //img.gallery__image
-  const atfFronCurrentImage = document.querySelector('img.gallery__image');
-
-  console.dir(atfFronCurrentImage.alt);
-  
   
   var lightbox = new SimpleLightbox(".gallery a", {
     /* options */
