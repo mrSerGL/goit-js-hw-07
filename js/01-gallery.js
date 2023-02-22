@@ -25,24 +25,22 @@ function createGalleryMarkup(galleryItems) {
     .join("");
 }
 
-galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
-
+galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup);
 
 function onGalleryContainerClick(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const isGallryItem = event.target.classList.contains('gallery__image');
+  const isGallryItem = event.target.classList.contains("gallery__image");
 
-    if (!isGallryItem) {
-      return;
-    }
-  
-	basicLightbox.create(`
-		<img width="1400" height="900" src="${event.target.dataset.source}">
-	`).show()
+  if (!isGallryItem) {
+    return;
+  }
 
-    console.log('click');
-    
- };
+  basicLightbox
+    .create(
+      `<img width="1400" height="900" src="${event.target.dataset.source}">`
+    )
+    .show();
+}
 
- galleryContainer.addEventListener('click', onGalleryContainerClick) 
+galleryContainer.addEventListener("click", onGalleryContainerClick);
