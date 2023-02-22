@@ -1,12 +1,8 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
-
 const galleryContainer = document.querySelector(".gallery");
 const galleryMarkup = createGalleryMarkup(galleryItems);
-
-// console.log(galleryMarkup);
 
 function createGalleryMarkup(galleryItems) {
   return galleryItems
@@ -14,7 +10,7 @@ function createGalleryMarkup(galleryItems) {
       return `
         <div class="gallery__item">
         <a class="gallery__item" href="${original}">
-        <img class="gallery__image" src="${preview}" alt="${description}" />
+        <img class="gallery__image" src="${preview}" alt="${description}" data-title="${description}"/>
         </a>
 
       </div>
@@ -33,9 +29,18 @@ function onGalleryContainerClick(event) {
   if (!isGallryItem) {
     return;
   }
-  var lightbox = new SimpleLightbox('.gallery a', { /* options */ });
-  console.log('click!');
+
+  //img.gallery__image
+  const atfFronCurrentImage = document.querySelector('img.gallery__image');
+
+  console.dir(atfFronCurrentImage.alt);
   
+  
+  var lightbox = new SimpleLightbox(".gallery a", {
+    /* options */
+    captionsData: 'alt', captionDelay: 250, 
+
+  });
 }
 
 galleryContainer.addEventListener("click", onGalleryContainerClick);
