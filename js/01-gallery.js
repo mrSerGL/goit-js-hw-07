@@ -11,7 +11,7 @@ function createGalleryMarkup(galleryItems) {
     .map(({ description, original, preview }) => {
       return `
         <div class="gallery__item">
-        <a class="gallery__link" href="${original}" target="_blank>
+        <a class="gallery__link" href="${original}">
           <img
             class="gallery__image"
             src="${preview}"
@@ -26,3 +26,7 @@ function createGalleryMarkup(galleryItems) {
 }
 
 galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
+
+function onGalleryContainerClick(event) {
+    event.preventDefault();
+ };
