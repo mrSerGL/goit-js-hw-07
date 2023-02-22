@@ -15,7 +15,7 @@ function createGalleryMarkup(galleryItems) {
           <img
             class="gallery__image"
             src="${preview}"
-            data-source="large-image.jpg"
+            data-source="${original}"
             alt="${description}"
           />
         </a>
@@ -37,7 +37,9 @@ function onGalleryContainerClick(event) {
       return;
     }
   
-
+	basicLightbox.create(`
+		<img width="1400" height="900" src="${event.target.dataset.source}">
+	`).show()
 
     console.log('click');
     
