@@ -3,8 +3,7 @@ import { galleryItems } from "./gallery-items.js";
 
 const galleryContainer = document.querySelector(".gallery");
 const galleryMarkup = createGalleryMarkup(galleryItems);
-
-// console.log(galleryMarkup);
+let instanceBasicLightbox;
 
 function createGalleryMarkup(galleryItems) {
   return galleryItems
@@ -26,21 +25,40 @@ function createGalleryMarkup(galleryItems) {
 }
 
 galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup);
+galleryContainer.addEventListener("click", onGalleryContainerClick);
 
 function onGalleryContainerClick(event) {
   event.preventDefault();
 
-  const isGallryItem = event.target.classList.contains("gallery__image");
+  const isGallуryItem = event.target.classList.contains("gallery__image");
 
-  if (!isGallryItem) {
+  if (!isGallуryItem) {
     return;
   }
 
-  basicLightbox
+  openModal();
+}
+
+function openModal() {
+  let instance = basicLightbox
     .create(
       `<img width="1400" height="900" src="${event.target.dataset.source}">`
     )
     .show();
+
+  instanceBasicLightbox = instance;
+  window.addEventListener("keydown", onEscKeyPress);
 }
 
-galleryContainer.addEventListener("click", onGalleryContainerClick);
+function onEscKeyPress(event) {
+  const ESC_KEY_CODE = "Escape";
+  const isEscKey = event.code === ESC_KEY_CODE;
+
+  if (isEscKey) {
+    const divModal = document.querySelector(".basicLightbox");
+
+    divModal.classList.remove("basicLightbox--visible");
+
+    window.removeEventListener("keydown", onEscKeyPress);
+  }
+}
